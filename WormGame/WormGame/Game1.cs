@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
 using System;
 using System.Collections.Generic;
+using WormGame.Managers;
 
 namespace WormGame
 {
@@ -33,6 +34,7 @@ namespace WormGame
 
         // States
         public static GameState gameState;
+        public LevelManager levelManager;
 
         public Game1()
         {
@@ -46,7 +48,7 @@ namespace WormGame
         protected override void Initialize()
         {
             gameState = GameState.Level;
-            camera = new Camera2D(GraphicsDevice) { Zoom = initialZoom, Position = -screenSize / 2f };
+            camera = new Camera2D(GraphicsDevice);
             IsMouseVisible = false;
             IsFixedTimeStep = true;
             graphics.SynchronizeWithVerticalRetrace = true;
@@ -65,6 +67,14 @@ namespace WormGame
             fonts = new Dictionary<string, SpriteFont>()
             {
             };
+
+            levelManager = new LevelManager();
+            // Fit to screen
+            if (levelManager.level.width / levelManager.level.height > screenSize.X / screenSize.Y)
+                camera.Zoom = screenSize.X / levelManager.level.width;
+            else
+                camera.Zoom = screenSize.Y / levelManager.level.height;
+            camera.Position = (levelManager.level.levelSize - screenSize) / 2f;
         }
 
         protected override void UnloadContent()
@@ -76,7 +86,7 @@ namespace WormGame
             switch (gameState)
             {
                 case GameState.Level:
-                    // Update the level stuff
+                    levelManager.Update(gameTime);
                     break;
             }
             base.Update(gameTime);
@@ -89,7 +99,7 @@ namespace WormGame
             switch (gameState)
             {
                 case GameState.Level:
-                    // Draw the level stuff
+                    levelManager.Draw(spriteBatch);
                     break;
             }
             spriteBatch.End();
