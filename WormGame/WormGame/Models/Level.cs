@@ -23,7 +23,7 @@ namespace WormGame.Models
 
         public Level()
         {
-            player = new Player();
+            player = new Player(new Vector2(13, 9), new Vector2(12, 9), new Vector2(14, 9));
             backgroundTiles = new List<Tile>();
             foregroundTiles = new List<Tile>();
 

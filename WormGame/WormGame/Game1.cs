@@ -61,6 +61,7 @@ namespace WormGame
         {
             textures = new Dictionary<string, Texture2D>()
             {
+                { "player", Content.Load<Texture2D>("Sprites/player") },
                 { "basic_background_dark", Content.Load<Texture2D>("Tiles/basic_background_dark") }
             };
 

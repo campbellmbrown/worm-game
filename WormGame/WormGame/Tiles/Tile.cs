@@ -25,7 +25,7 @@ namespace WormGame.Tiles
 
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position*tileWidth, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
