@@ -49,7 +49,7 @@ namespace WormGame
         {
             gameState = GameState.Level;
             camera = new Camera2D(GraphicsDevice);
-            IsMouseVisible = false;
+            IsMouseVisible = true;
             IsFixedTimeStep = true;
             graphics.SynchronizeWithVerticalRetrace = true;
             r = new Random();
@@ -61,7 +61,7 @@ namespace WormGame
         {
             textures = new Dictionary<string, Texture2D>()
             {
-                //{ "basic_ship_main", Content.Load<Texture2D>("Ships/PlayerShips/basic_ship_main") }
+                { "basic_background_dark", Content.Load<Texture2D>("Tiles/basic_background_dark") }
             };
 
             fonts = new Dictionary<string, SpriteFont>()
